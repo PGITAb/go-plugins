@@ -1,4 +1,4 @@
-module github.com/micro/go-plugins
+module github.com/PGITAb/go-plugins
 
 go 1.13
 
