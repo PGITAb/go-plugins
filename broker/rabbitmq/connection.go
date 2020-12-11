@@ -6,6 +6,7 @@ package rabbitmq
 
 import (
 	"crypto/tls"
+	"errors"
 	"regexp"
 	"strings"
 	"sync"
@@ -249,5 +250,8 @@ func (r *rabbitMQConn) Consume(queue, key string, headers amqp.Table, qArgs amqp
 }
 
 func (r *rabbitMQConn) Publish(exchange, key string, msg amqp.Publishing) error {
+	if r.ExchangeChannel == nil {
+		return errors.New("ExchangeChannel is nil")
+	}
 	return r.ExchangeChannel.Publish(exchange, key, msg)
 }
